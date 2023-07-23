@@ -1,7 +1,4 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import { NextSeo } from 'next-seo'
 import { Footer } from '@/components/layout/Footer'
 import { Container, Heading } from '@chakra-ui/react'
@@ -13,7 +10,7 @@ export default function Home() {
     <>
       <NextSeo title='Home' description='Homepage of social brothers blog' />
       <Container>
-        <Heading fontSize='lg'>Blog</Heading>
+        <Heading as='h2' size='lg' fontWeight='bold'>Blog</Heading>
       </Container>
       <Footer />
     </>
