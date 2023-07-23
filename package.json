@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "svgr": "npx @svgr/cli@5 ./src/icons --template ./src/icons/svgrtemplate.js --ext tsx --out-dir ./src/icons/components --ref"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.1",

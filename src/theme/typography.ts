@@ -8,6 +8,7 @@ export const fonts: ChakraTheme['fonts'] = {
 export const fontSizes: ChakraTheme['fontSizes'] = {
     xl: "3rem",
     lg: "1.5rem",
-    md: "0.75rem",
-    sm: "0.5rem",
+    md: "1.125rem",
+    sm: "0.75rem",
+    xs: "0.5rem"
 }
