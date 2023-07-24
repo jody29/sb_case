@@ -15,16 +15,12 @@ export const NavLink = ({ children, href, exact, activeClassName='active', rende
     const router = useRouter();
     const child = children && Children.only(children);
 
-    console.log(router)
-
     const routerPath = router.asPath ? router.asPath : router.pathname;
     const match = router.asPath ? otherProps.as || href : href;
 
     const condition = exact ? Boolean(routerPath === match) : Boolean(routerPath.startsWith(String(match)));
 
     const className = condition ? activeClassName : undefined;
-
-    console.log(exact)
 
     return (
         <Link href={href} {...otherProps}>
