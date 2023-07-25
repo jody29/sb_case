@@ -3,8 +3,15 @@ import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { Box, Container, Flex } from '@chakra-ui/react'
 import { Form } from '@/components/Form'
+import { GetStaticProps, NextPage } from 'next'
+import { fetchData } from '@/utils/api'
+import { env } from '@/env/client.mjs'
 
-export default function Home() {
+interface PageProps {
+
+}
+
+const Page: NextPage<PageProps> = () => {
   return (
     <>
       <NextSeo title='Home' description='Homepage of social brothers blog' />
@@ -23,3 +30,15 @@ export default function Home() {
     </>
   )
 }
+
+export const getStaticProps: GetStaticProps = async ctx => {
+  const response = await fetchData(`${env.NEXT_PUBLIC_URL_ENDPOINT}/posts?perPage=4`)
+
+  return {
+    props: {
+
+    }
+  }
+}
+
+export default Page

@@ -15,9 +15,9 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     labelProps?: any;
 }
 
-type InputWrapperProps = InputProps & { hasFocus?: boolean; background?: string };
+type InputWrapperProps = InputProps & { hasFocus?: boolean; background?: string; padding?: number | string };
 
-export const InputtWrapper = ({ hasFocus, background, hasError, ...props }: InputWrapperProps) => {
+export const InputtWrapper = ({ hasFocus, background, hasError, padding, ...props }: InputWrapperProps) => {
 
     let additionalProps: any = {};
 
@@ -44,6 +44,7 @@ export const InputtWrapper = ({ hasFocus, background, hasError, ...props }: Inpu
                 alignItems: 'center',
                 color: 'grey',
                 mt: '8px',
+                padding: padding,
                 borderRadius: '5px',
                 borderColor: 'transparent',
                 backgroundColor: background,
