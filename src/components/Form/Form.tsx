@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import { Button, Flex, Heading, Input } from "@chakra-ui/react"
+import { Button, Flex, Heading, Input, Textarea } from "@chakra-ui/react"
 import { FormFileInput, FormInput } from "./FormInput"
 import { FormSelect } from './FormSelect'
 import { env } from '../../env/client.mjs'
