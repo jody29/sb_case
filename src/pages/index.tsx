@@ -12,7 +12,7 @@ export default function Home() {
       <Box as='main' w='full' py={16}>
         <Container>
           <Flex gap={8} flexWrap='wrap' alignItems='stretch'>
-            <Flex flex={1} backgroundColor='white' p={12}>
+            <Flex flex={1} backgroundColor='white' p={6}>
               <Form />
             </Flex>
             <Flex flex={{ base: 1, md: 1.5 }} backgroundColor='white' p={12}></Flex>

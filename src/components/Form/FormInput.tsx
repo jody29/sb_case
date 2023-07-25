@@ -1,15 +1,77 @@
-import { Box, Flex, FormLabel, Input, Stack } from "@chakra-ui/react"
+import { Box, chakra, Flex, Icon, Input, Stack, Text } from "@chakra-ui/react"
+import { InputHTMLAttributes, useRef } from "react";
+import { Label } from "../shared/Label/Label";
+import { InputtWrapper } from "./FormSelect";
+import { FiCamera } from 'react-icons/fi'
 
 interface formInputProps {
     label: string;
     name: string;
+    hasFocus?: boolean;
+    hasError?: boolean;
+    background?: string;
+    setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
 }
 
 export const FormInput = (props: formInputProps) => {
     return (
-        <>
-            <FormLabel htmlFor={props.name} fontSize='sm' color='grey.700' mb={0}>{props.label}</FormLabel>
-            <Input w='100%' bg='white.darker' border={0} fontSize='sm' placeholder='Geen titel' _placeholder={{ color: 'grey', fontStyle: 'italic' }}/>
-        </>
+        <Box>
+            <Label htmlFor={props.name} fontSize='sm' color='grey.700' mb={0}>{props.label}</Label>
+            <InputtWrapper hasFocus={props.hasFocus} hasError={props.hasError} background='white.darker'>
+                <Input w='100%' bg='white.darker' onChange={e => { props.setFieldValue(props.name, e.target.value) }} name={props.name} border={0} fontSize='sm' placeholder='Geen titel' _placeholder={{ color: 'grey', fontStyle: 'italic' }}/>
+            </InputtWrapper>
+        </Box>
     )
 }
+
+interface formFileInputProps {
+    label?: string;
+    name: string;
+    setFieldValue: (field: string, value: any) => void
+}
+
+const styles = {
+    customFileInput: {
+        display: 'flex',
+        backgroundColor: 'grey.400',
+        width: 'fit-content',
+        padding: '4px 12px',
+        color: 'white',
+        borderRadius: '20px',
+        fontSize: 'sm',
+        position: 'relative',
+        overflow: 'hidden',
+    }
+}
+
+const CustomFileInput = (props: formFileInputProps) => {
+    const fileInputRef = useRef<HTMLInputElement>(null)
+    
+    const handleLabelClick = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click()
+        }
+    }
+
+    return (
+        <label htmlFor={props.name} onClick={handleLabelClick} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { handleLabelClick() } }} tabIndex={0} style={{ display: 'flex', backgroundColor: '#7d7d7d', width: 'fit-content', padding: '4px 12px', color: 'white', borderRadius: '20px', fontSize: '12px', position: 'relative', overflow: 'hidden' }}>
+            <Input ref={fileInputRef} type='file' accept="image/*" opacity={0} position='absolute' left={0} top={0} w='100%' height='100%' zIndex={-1} tabIndex={-1} cursor='pointer' name={props.name} onChange={e => { props.setFieldValue(props.name, e.target.value) }} />
+            <Text>Kies bestand</Text>
+        </label>
+    )
+}
+
+export const FormFileInput = (props: formFileInputProps) => {
+    return (
+        <Box>
+            <Label htmlFor={props.name} fontSize='sm' color='grey.700' mb={0}>{props.label}</Label>
+            <Flex alignItems='center' gap={4} px={4} py={2} backgroundColor='white.darker' w='fit-content' mt={1}>
+                <Icon>
+                    <FiCamera size='md' color="grey.400" />
+                </Icon>
+                <CustomFileInput setFieldValue={props.setFieldValue} name={props.name} />
+            </Flex>
+        </Box>
+    )
+}
+
