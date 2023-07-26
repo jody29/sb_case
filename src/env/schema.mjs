@@ -17,6 +17,7 @@ export const serverSchema = z.object({
 export const clientSchema = z.object({
   NEXT_PUBLIC_API_KEY: z.string(),
   NEXT_PUBLIC_URL_ENDPOINT: z.string(),
+  NEXT_PUBLIC_HOST_ENDPOINT: z.string()
 });
 
 /**
@@ -27,5 +28,6 @@ export const clientSchema = z.object({
  */
 export const clientEnv = {
   NEXT_PUBLIC_API_KEY: process.env.NEXT_PUBLIC_API_KEY,
-  NEXT_PUBLIC_URL_ENDPOINT: process.env.NEXT_PUBLIC_URL_ENDPOINT
+  NEXT_PUBLIC_URL_ENDPOINT: process.env.NEXT_PUBLIC_URL_ENDPOINT,
+  NEXT_PUBLIC_HOST_ENDPOINT: process.env.NEXT_PUBLIC_HOST_ENDPOINT
 };
