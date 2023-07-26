@@ -22,7 +22,7 @@ export interface BlogProps {
   }
 }
 
-export interface PageProps {
+interface PageProps {
   initialBlogposts: BlogProps[];
 }
 

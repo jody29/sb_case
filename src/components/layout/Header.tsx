@@ -26,8 +26,8 @@ const Navigation = ({ ...props }: FlexProps) => {
         <Flex as='nav' {...rest}>
             {navItems.map(item => (
                 <Box key={item.title}>
-                    <NavLink href={item.url} passHref>
-                        <NavigationLink px={1} pb={1} data-group>
+                    <NavLink href={item.url} exact={item.url === '/'} passHref>
+                        <NavigationLink px={1} pb={1}>
                             <Text fontSize='md' color='white' fontWeight='semibold'>{item.title}</Text>
                         </NavigationLink>
                     </NavLink>

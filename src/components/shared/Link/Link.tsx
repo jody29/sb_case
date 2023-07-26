@@ -18,7 +18,7 @@ export const NavLink = ({ children, href, exact, activeClassName='active', rende
     const routerPath = router.asPath ? router.asPath : router.pathname;
     const match = router.asPath ? otherProps.as || href : href;
 
-    const condition = exact ? Boolean(routerPath === match) : Boolean(routerPath.startsWith(String(match)));
+    const condition = exact ? Boolean(routerPath === match) : Boolean(routerPath === '/' && match === '/') || Boolean(routerPath.startsWith(String(match)))
 
     const className = condition ? activeClassName : undefined;
 
