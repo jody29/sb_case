@@ -34,10 +34,10 @@ const Page: NextPage<PageProps> = ({initialBlogposts}) => {
       <Box as='main' w='full' py={16}>
         <Container>
           <Flex gap={8} flexDirection={{ base: 'column-reverse', md: 'row' }} w='full' alignItems='stretch'>
-            <Flex w={{  base: 'full', md: '40%' }} backgroundColor='white' p={6} h='700px'>
+            <Flex w={{  base: 'full', md: '40%' }} backgroundColor='white' p={6}>
               <Form />
             </Flex>
-            <Flex w={{ base: 'full', md: '60%'}} flexDirection='column' backgroundColor='white' h='700px' pt={6}>
+            <Flex w={{ base: 'full', md: '60%'}} flexDirection='column' backgroundColor='white' pt={6} maxH='696px'>
               <ShowLatest initialBlogPosts={initialBlogposts} />
             </Flex>
           </Flex>
