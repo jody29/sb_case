@@ -31,20 +31,6 @@ interface formFileInputProps {
     setFieldValue: (field: string, value: any) => void
 }
 
-const styles = {
-    customFileInput: {
-        display: 'flex',
-        backgroundColor: 'grey.400',
-        width: 'fit-content',
-        padding: '4px 12px',
-        color: 'white',
-        borderRadius: '20px',
-        fontSize: 'sm',
-        position: 'relative',
-        overflow: 'hidden',
-    }
-}
-
 const CustomFileInput = (props: formFileInputProps) => {
     const fileInputRef = useRef<HTMLInputElement>(null)
     

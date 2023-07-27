@@ -52,6 +52,8 @@ export const getStaticProps: GetStaticProps = async ctx => {
   const response = await fetchData(`${env.NEXT_PUBLIC_URL_ENDPOINT}/posts?page=1&perPage=4`)
   const initialBlogposts = response.data
 
+  console.log(initialBlogposts)
+
   return {
     props: {
       initialBlogposts

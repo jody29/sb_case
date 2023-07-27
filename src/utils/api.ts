@@ -1,6 +1,8 @@
 import axios from 'axios'
+import ky from 'ky'
 
 import { env } from '@/env/client.mjs'
+import { error } from 'console';
 
 export const fetchData = async (url: string) => {
     try {
@@ -15,4 +17,24 @@ export const fetchData = async (url: string) => {
         console.error('Error fetching data:', error);
         return null
     }
+}
+
+export interface dataProps {
+    title: string;
+    category_id: string;
+    image: File;
+    content: string;
+}
+
+
+export const postData = async (data: FormData, url: string) => {
+    return await ky.post(`${url}/posts`, {
+        body: data,
+        headers: { 
+            token: env.NEXT_PUBLIC_API_KEY,
+            'Content-type': 'multipart/form-data'
+        },
+        
+    })
+    .json();
 }

@@ -113,7 +113,7 @@ export const FormSelect = ({
                     name={name}
                     onFocus={onFocus}
                     onBlur={onBlur}
-                    onChange={e => setFieldValue(name, e.target.value)}
+                    onChange={e => setFieldValue(name, parseInt(e.target.value, 10))}
                     disabled={disabled}
                     required={required}
                     defaultValue={defaultValue}
