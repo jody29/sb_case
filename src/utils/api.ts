@@ -31,14 +31,7 @@ export const postData = async (data: FormData, url: string) => {
             token: env.NEXT_PUBLIC_API_KEY
         };
 
-        const formDataObject: dataProps = {
-            title: data.get('title') as string,
-            category_id: data.get('category_id') as string,
-            image: data.get('image') as File,
-            content: data.get('content') as string
-        }
-
-        return await axios.post(`${url}/posts`, formDataObject, { headers })
+        return await axios.post(`${url}/posts`, data, { headers })
     } catch (error) {
         console.error('Error posting data:', error)
         return null

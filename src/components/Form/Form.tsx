@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { fetchData, postData } from '@/utils/api'
 import { FormTextarea } from './FormTextarea'
 import * as Yup from 'yup'
+import { useRouter } from 'next/router'
 
 interface FormValues {
     title: string;
@@ -18,6 +19,7 @@ interface FormValues {
 
 export const Form = () => {
     const [categories, setCategories] = useState([])
+    const router = useRouter()
 
     const initialValues: FormValues = {
         title: '',
@@ -29,7 +31,13 @@ export const Form = () => {
     const validationSchema = Yup.object({
         title: Yup.string().required(),
         category_id: Yup.string().required(),
-        image: Yup.mixed().required(),
+        image: Yup.mixed().required().test("fileSize", "Selecteer een bestand onder de 3MB", (value) => {
+            if (!value) return false
+
+            const maxSize = 3 * 1024 * 1024
+
+            return (value as File).size <= maxSize
+        }),
         content: Yup.string().required()
     })
 
@@ -50,6 +58,8 @@ export const Form = () => {
 
             const response = await postData(formData, env.NEXT_PUBLIC_URL_ENDPOINT)
 
+            router.reload()
+
             return response
         } catch (error) {
             console.error('Error posting data:', error)
@@ -59,7 +69,7 @@ export const Form = () => {
         isInitialValid: false
     })
 
-    const { setFieldValue, values, handleSubmit, getFieldProps, isValid, isSubmitting } = formik
+    const { setFieldValue, values, handleSubmit, getFieldProps, isValid, isSubmitting, errors } = formik
 
     useEffect(() => {
         const getCategories = async () => {
@@ -75,7 +85,7 @@ export const Form = () => {
                 <Heading as='h2' fontSize='lg' fontWeight='bold'>Plaats een blog bericht</Heading>
                 <FormInput label="Berichtnaam" setFieldValue={setFieldValue} {...getFieldProps('title')} />
                 <FormSelect options={categories} setFieldValue={setFieldValue} label='Categorie' placeholder='Geen categorie' {...getFieldProps('category_id')} />
-                <FormFileInput setFieldValue={setFieldValue} label='Header afbeelding' image={values.image ? values.image as File : undefined} {...getFieldProps('image')} />
+                <FormFileInput setFieldValue={setFieldValue} label='Header afbeelding' error={errors} image={values.image ? values.image as File : undefined} {...getFieldProps('image')} />
                 <FormTextarea setFieldValue={setFieldValue} label='Bericht' {...getFieldProps('content')} />
                 <Flex justifyContent='center' >
                     <Button type='submit' fontSize='sm' disabled={!isValid || isSubmitting}>Bericht aanmaken</Button>
