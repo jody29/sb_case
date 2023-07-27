@@ -37,7 +37,7 @@ export const ShowLatest = ({initialBlogPosts}: showLatestProps) => {
     return (
         <>
             <Box overflow='scroll' ref={blogPostsContainerRef} scrollBehavior='smooth'>
-                <Grid flexWrap='wrap' gap={6} gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))" px={6} pb={6}>
+                <Grid gap={6} gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))" px={6} pb={6}>
                 {blogPosts.map(post => (
                     <BlogPost key={post.created_at} blogPost={post} />
                 ))}
