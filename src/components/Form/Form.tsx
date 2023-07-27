@@ -42,8 +42,6 @@ export const Form = () => {
 
             if (image !== null) {
                 formData.append('image', image, image.name)
-                console.log(image.name)
-                console.log(image)
             }
                 
             Object.entries(restValues).forEach(([key, value]) => {
