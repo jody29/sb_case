@@ -37,5 +37,8 @@ const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(
     );
   }
 );
+
+SVGIcon.displayName = "SVGIcon"
+
 const SbLogoIcon = chakra(SVGIcon);
 export default SbLogoIcon;
