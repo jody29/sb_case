@@ -1,5 +1,8 @@
 # Social Brothers Blog
 
+## Live link
+https://sb-case-theta.vercel.app/
+
 ## Node version
 16.20.1
 
