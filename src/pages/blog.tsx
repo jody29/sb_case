@@ -33,33 +33,22 @@ const Page: NextPage<PageProps> = ({data, totalPages, page, nextPage, prevPage})
 
 export const getServerSideProps: GetServerSideProps = async context => {
     const { query } = context
-    let { page = "1" } = query
+    const { page = "1" } = query
 
     const perPage = 8;
-    const currentPage = parseInt(page.toString(), 10)
-
-    const totalCountResponse = await fetchData(`${env.NEXT_PUBLIC_URL_ENDPOINT}/posts`);
-    const totalCount = totalCountResponse.total;
-
-    const totalPages = Math.ceil(totalCount / perPage)
-
-    if (currentPage < 1) {
-        page = '1';
-    } else if (currentPage > totalPages) {
-        page = totalPages.toString()
-    }
 
     const response = await fetchData(`${env.NEXT_PUBLIC_URL_ENDPOINT}/posts?page=${page}&perPage=${perPage}`)
 
     const data = response.data
-    const nextPage = currentPage < totalPages ? (currentPage + 1).toString() : null;
-    const prevPage = currentPage > 1 ? (currentPage - 1).toString() : null;
+    const totalPages = response.last_page
+    const nextPage = response.next_page_url
+    const prevPage = response.prev_page_url
 
     return {
         props: {
             data,
             totalPages,
-            page: currentPage,
+            page,
             nextPage,
             prevPage,
         }
