@@ -13,6 +13,7 @@ interface postsContainerProps {
 }
 
 export const PostsContainer = ({blogPosts, pageCount, currentPage, prevPage, nextPage}: postsContainerProps) => {
+
     return (
         <>
             <Grid gridTemplateColumns='repeat(auto-fill, minmax(250px, 1fr))' gridTemplateRows='1fr 1fr' gap={6} mb={6}>
