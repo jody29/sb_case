@@ -8,7 +8,7 @@ const NavigationLink = forwardRef<any, BoxProps>((props, ref) => (
     <Flex ref={ref} sx={{ '&.active': { borderBottom: '2px solid #f27623' } }} {...props} />
 ))
 
-NavigationLink.displayName = 'NavigationLink'
+NavigationLink.displayName = "NavigationLink"
 
 const navItems = [
     {
